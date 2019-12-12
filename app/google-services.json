@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "522681729089",
+    "firebase_url": "https://vspot-be2bd.firebaseio.com",
+    "project_id": "vspot-be2bd",
+    "storage_bucket": "vspot-be2bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522681729089:android:3a2682347b3ed056e686c0",
+        "android_client_info": {
+          "package_name": "com.stefansuess.vspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522681729089-j6gglmgdu4b0pmd2ljl5i8g0iq52md3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stefansuess.vspot",
+            "certificate_hash": "39c6ef0cec97570925b33fee7c688e40d67031db"
+          }
+        },
+        {
+          "client_id": "522681729089-5dm00ramt7rh4d1j8i8gbdmuii1q8986.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDicTw1kGLFzCMxsQkuzOOp99EoPGLz2LA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522681729089-5dm00ramt7rh4d1j8i8gbdmuii1q8986.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
