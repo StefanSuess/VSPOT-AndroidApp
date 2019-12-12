@@ -1,4 +1,4 @@
-sudo: false
+sudo: required
 language: android
 jdk:
   - oraclejdk8
@@ -6,6 +6,15 @@ before_install:
   - chmod +x gradlew
 dist: trusty
 env:
+before_cache:
+ - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+ - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+ directories:
+ - $HOME/.gradle/caches/
+ - $HOME/.gradle/wrapper/
+
   global:
    - ANDROID_API_LEVEL=29
    - EMULATOR_API_LEVEL=29
@@ -34,7 +43,10 @@ android:
 
     - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API_LEVEL
     - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
-    
+ licenses:
+    - android-sdk-preview-license-.+
+    - android-sdk-license-.+
+    - google-gdk-license-.+
 before_script:
     - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
     - emulator -avd test -no-skin -no-audio -no-window &
