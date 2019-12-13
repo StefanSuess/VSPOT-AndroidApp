@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
@@ -44,6 +45,7 @@ public class PresentationActivity extends FragmentActivity {
     private ChannelViewModel channelViewModel;
     private ViewPager2 mPager;
     private RecyclerView.Adapter pagerAdapter;
+    TabLayout tabLayout;
 
     public static void setDisplay_time(String display_time) {
         if (display_time != null && Integer.parseInt(display_time) > 0) {
@@ -88,6 +90,9 @@ public class PresentationActivity extends FragmentActivity {
         }
     }
 
+    // double tap exit button to exit
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -105,7 +110,7 @@ public class PresentationActivity extends FragmentActivity {
         mPager.setAdapter(pagerAdapter);
 
         // Connect Tablayout with viewpager
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        tabLayout = findViewById(R.id.tab_layout);
         new TabLayoutMediator(tabLayout, mPager, true, (tab, position) -> {
             // TODO fill the tablayout
         }).attach();
@@ -113,15 +118,22 @@ public class PresentationActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
+        if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
-        } else {
-            // Otherwise, select the previous step.
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
+            return;
         }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
+
 
     private void configureViewModel() {
         SharedPref sharedPref = SharedPref.getInstance(MainActivity.context);
@@ -152,6 +164,18 @@ public class PresentationActivity extends FragmentActivity {
 
             //pagerAdapter.notifyItemRangeRemoved(0,-1);
             pagerAdapter.notifyDataSetChanged();
+
+            // set the pager counter to invisible if less then 2 screens are present
+            if (channel.getScreens().size() < 2) {
+                tabLayout.setVisibility(View.GONE);
+            } else {
+                tabLayout.setVisibility(View.VISIBLE);
+            }
+            if (channel.getScreens().size() > 15) {
+                tabLayout.setVisibility(View.GONE);
+            } else {
+                tabLayout.setVisibility(View.VISIBLE);
+            }
 
             if (isFirstUpdate) {
                 isFirstUpdate = false;

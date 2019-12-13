@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">VSPOT</string>
     <string name="startButton">Scannen beginnen</string>
-    <string name="bodyExplanation">Sie müssen VSPOT Zugriff auf Ihre Kamera gewähren um den QR Code mit der Aufschrift API Keyscannen zu können</string>
+    <string name="bodyExplanation">Sie müssen VSPOT Zugriff auf Ihre Kamera gewähren um den QR Code mit der Aufschrift "API Key" scannen zu können</string>
     <string name="headingText">Scannen des API Key</string>
 </resources>

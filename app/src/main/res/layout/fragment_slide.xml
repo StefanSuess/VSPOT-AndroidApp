@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/heading"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="120dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
@@ -63,7 +63,7 @@
     <TextView
         android:id="@+id/textblock"
         android:layout_width="0dp"
-        android:layout_height="75dp"
+        android:layout_height="70dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="150dp"
