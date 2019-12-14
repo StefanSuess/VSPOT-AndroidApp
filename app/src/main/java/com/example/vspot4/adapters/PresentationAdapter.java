@@ -49,12 +49,12 @@ public class PresentationAdapter extends FragmentStateAdapter {
 
     @Override
     public long getItemId(int position) {
-        //return super.getItemId(position);
-        if (channelViewModel.getChannel().getValue() != null) {
+        return super.getItemId(position);
+        /*if (channelViewModel.getChannel().getValue() != null) {
             return channelViewModel.getChannel().getValue().getScreens().get(position).hashCode();
         } else {
             return super.getItemId(position);
-        }
+        }*/
     }
 
     @Override
