@@ -126,12 +126,20 @@ public class ChannelRepository {
                     ChannelTimestamp channelTimestamp = response.body();
                     // +3 zeros because the timestamp from the json has only 10 digits and required are 13
                     ChannelRepository.timestamp.setTime(Long.parseLong(channelTimestamp.getLastupdate() + "000"));
+                    // set fail timer to zero
+                    PresentationActivity.updateFail = 0;
+                    // TODO Fix too many updates
+                    // make the notification go away
+                    if (snackbar != null) {
+                        snackbar.dismiss();
+                    }
                 });
             }
 
             @Override
             public void onFailure(Call<ChannelTimestamp> call, Throwable t) {
                 Log.e(TAG, "onFailure: " + t.getMessage());
+                handleFailure(API_KEY, t);
             }
         });
     }
@@ -155,12 +163,6 @@ public class ChannelRepository {
                     }
                     channelDao.save(channel);
 
-                    // set fail timer to zero
-                    PresentationActivity.updateFail = 0;
-                    // make the notification go away
-                    if (snackbar != null) {
-                        snackbar.dismiss();
-                    }
                     // recurring update
                     updateContinously(API_KEY);
                 });
@@ -168,7 +170,8 @@ public class ChannelRepository {
 
             @Override
             public void onFailure(Call<Channel> call, Throwable t) {
-                handleFailure(API_KEY, t);
+                Log.e(TAG, "onFailure Called: " + t.getMessage());
+                //handleFailure(API_KEY, t);
             }
         });
     }
