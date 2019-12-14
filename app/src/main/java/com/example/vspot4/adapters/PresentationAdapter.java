@@ -25,19 +25,25 @@ public class PresentationAdapter extends FragmentStateAdapter {
     }
 
     @NonNull
-    @Override
+    @Override // Choose which fragment to make depending on layout_name
     public Fragment createFragment(int position) {
 
-        if (channelViewModel.getChannel().getValue() == null) {
+        if (channelViewModel.getChannel().getValue() == null) { // empty fragment / loading fragment
             return PresentationFragment.newInstance(position);
+        } else if (channelViewModel.getChannel().getValue().getScreens().get(position).getHtml_block() != null) { // html fragment
+            // for easier coding set a new variable for every position
+            Screen screens = channelViewModel.getChannel().getValue().getScreens().get(position);
+            return PresentationFragment.newInstance(position, screens.getBackground_color()
+                    , screens.getBg_img_cdn_link(), screens.getOverlay_color(), screens.getText_color()
+                    , screens.getLayout_name(), screens.getHtml_block());
+        } else { // basic fragment
+            // for easier coding set a new variable for every position
+            Screen screens = channelViewModel.getChannel().getValue().getScreens().get(position);
+            return PresentationFragment.newInstance(position, screens.getBackground_color()
+                    , screens.getBg_img_cdn_link(), screens.getOverlay_color(), screens.getText_color()
+                    , screens.getHeading(), screens.getSubheading(), screens.getText_block()
+                    , screens.getLayout_name());
         }
-        // for easier coding set a new variable for every position
-        Screen screens = channelViewModel.getChannel().getValue().getScreens().get(position);
-
-        return PresentationFragment.newInstance(position, screens.getBackground_color()
-                , screens.getBg_img_cdn_link(), screens.getOverlay_color(), screens.getText_color()
-                , screens.getHeading(), screens.getSubheading(), screens.getText_block()
-                , screens.getLayout_name());
     }
 
 

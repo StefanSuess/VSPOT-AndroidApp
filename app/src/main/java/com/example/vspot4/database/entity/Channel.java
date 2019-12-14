@@ -52,8 +52,6 @@ public class Channel {
     }
 
 
-    // --- GETTER ---
-
     @NonNull
     public String getName() {
         return name;
@@ -82,9 +80,6 @@ public class Channel {
     public String getTransition_time() {
         return transition_time;
     }
-
-
-    // --- SETTER ---
 
     public void setTransition_time(String transition_time) {
         this.transition_time = transition_time;

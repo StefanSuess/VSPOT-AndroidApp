@@ -1,5 +1,6 @@
 package com.example.vspot4.database.entity;
 
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 
 import com.google.gson.annotations.Expose;
@@ -7,6 +8,11 @@ import com.google.gson.annotations.SerializedName;
 
 @Entity
 public class Screen {
+
+    @Nullable
+    @SerializedName("html_block")
+    @Expose
+    private String html_block;
 
     @SerializedName("background_color")
     @Expose
@@ -43,7 +49,8 @@ public class Screen {
 
     public Screen(String background_color, String bg_img_cdn_link, String overlay_color
             , String text_color, String heading, String subheading, String text_block
-            , String layout_name) {
+            , String layout_name, @Nullable String html_block) {
+        this.html_block = html_block;
         this.background_color = background_color;
         this.bg_img_cdn_link = bg_img_cdn_link;
         this.overlay_color = overlay_color;
@@ -54,8 +61,11 @@ public class Screen {
         this.layout_name = layout_name;
     }
 
-    // --- GETTER ---
 
+    @Nullable
+    public String getHtml_block() {
+        return html_block;
+    }
 
     public String getBackground_color() {
         return background_color;
@@ -89,8 +99,9 @@ public class Screen {
         this.text_color = text_color;
     }
 
-
-    // --- SETTER ---
+    public void setHtml_block(@Nullable String html_block) {
+        this.html_block = html_block;
+    }
 
     public String getHeading() {
         return heading;

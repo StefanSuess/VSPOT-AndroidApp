@@ -2,6 +2,7 @@ package com.example.vspot4.fragments;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class PresentationFragment extends Fragment {
     Boolean progressbar = false;
     TextView textViewHeading, textViewSubheading, textViewTextblock;
     int number;
-    private String position, background_color, bg_img_cdn_link, overlay_color, text_color, heading, subheading, text_block, layout_name;
+    private String position, background_color, bg_img_cdn_link, overlay_color, text_color, heading, subheading, text_block, layout_name, html_block;
 
     // Minimal fragment
     public static PresentationFragment newInstance(int position) {
@@ -48,7 +49,6 @@ public class PresentationFragment extends Fragment {
         PresentationFragment presentationFragment = new PresentationFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("number", position);
-        //Log.e(TAG,background_color);
         bundle.putString("background_color", background_color);
         bundle.putString("bg_img_cdn_link", bg_img_cdn_link);
         bundle.putString("overlay_color", overlay_color);
@@ -60,6 +60,24 @@ public class PresentationFragment extends Fragment {
         presentationFragment.setArguments(bundle);
         return presentationFragment;
     }
+
+    // HTML FRAGMENT
+    public static PresentationFragment newInstance(int position, String background_color
+            , String bg_img_cdn_link, String overlay_color, String text_color
+            , String layout_name, String html_block) {
+        PresentationFragment presentationFragment = new PresentationFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("number", position);
+        bundle.putString("background_color", background_color);
+        bundle.putString("bg_img_cdn_link", bg_img_cdn_link);
+        bundle.putString("overlay_color", overlay_color);
+        bundle.putString("text_color", text_color);
+        bundle.putString("layout_name", layout_name);
+        bundle.putString("html_block", html_block);
+        presentationFragment.setArguments(bundle);
+        return presentationFragment;
+    }
+
 
     private static int getColor(String input) {
         if (input != null) {
@@ -86,8 +104,7 @@ public class PresentationFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_slide, container, false);
-
+        ViewGroup rootView;
         // Get all arguments
         number = getArguments().getInt("NUMBER", 0);
         background_color = getArguments().getString("background_color", null);
@@ -99,28 +116,41 @@ public class PresentationFragment extends Fragment {
         text_block = getArguments().getString("text_block", null);
         layout_name = getArguments().getString("layout_name", null);
         progressbar = getArguments().getBoolean("PROGRESSBAR", false);
+        html_block = getArguments().getString("html_block", null);
 
-        // Loading animation
-        ProgressBar progressBar = rootView.findViewById(R.id.progressbar);
-        if (progressbar) {
-            progressBar.setVisibility(View.VISIBLE);
-        } else {
-            progressBar.setVisibility(View.GONE);
+        if (layout_name != null && layout_name.equals("HTML")) { // if html layout
+            rootView = (ViewGroup) inflater.inflate(R.layout.fragment_slide_html, container, false);
+            // set the view to html_block
+            TextView textView = rootView.findViewById(R.id.textView);
+            textView.setText(Html.fromHtml(html_block));
+            textView.setTextColor(getColor(text_color));
+
+        } else { // if anything else
+            rootView = (ViewGroup) inflater.inflate(R.layout.fragment_slide, container, false);
+            // Heading, subeheading and textblock
+            textViewHeading = rootView.findViewById(R.id.heading);
+            textViewSubheading = rootView.findViewById(R.id.subheading);
+            textViewTextblock = rootView.findViewById(R.id.textblock);
+            textViewHeading.setText(heading);
+            textViewHeading.setTextColor(getColor(text_color));
+            textViewSubheading.setText(subheading);
+            textViewSubheading.setTextColor(getColor(text_color));
+            textViewTextblock.setText(text_block);
+            textViewTextblock.setTextColor(getColor(text_color));
+
+            // Loading animation
+            ProgressBar progressBar = rootView.findViewById(R.id.progressbar);
+            if (progressbar) {
+                progressBar.setVisibility(View.VISIBLE);
+            } else {
+                progressBar.setVisibility(View.GONE);
+            }
         }
-
-        // Heading and subeheading
-        textViewHeading = rootView.findViewById(R.id.heading);
-        textViewSubheading = rootView.findViewById(R.id.subheading);
-        textViewTextblock = rootView.findViewById(R.id.textblock);
-        textViewHeading.setText(heading);
-        textViewHeading.setTextColor(getColor(text_color));
-        textViewSubheading.setText(subheading);
-        textViewSubheading.setTextColor(getColor(text_color));
-        textViewTextblock.setText(text_block);
-        textViewTextblock.setTextColor(getColor(text_color));
 
         // Show Pictures
         setFrameBackGroundImage(bg_img_cdn_link, rootView);
+        // TODO Darken the background image
+
 
         // set background color
         rootView.setBackgroundColor(getColor(background_color));
