@@ -20,5 +20,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 * Project partner and "frontend god": Daniel Sixl https://github.com/Sixl-Daniel
-* For the christmas hat in the logo: Icon made by Pixel perfect from www.flaticon.com
 * Accompanying web app for the android app: https://github.com/Sixl-Daniel/FST-Projekt-VSPOT
