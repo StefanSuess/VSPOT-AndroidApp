@@ -1,8 +1,7 @@
 # VSPOT-AndroidApp
 
 <div align="center">
-<img src="https://www.dropbox.com/s/jcbm7pq67p5re0q/logo.png?dl=0">
-<h1>VSPOT<br>Digital Signage Solution</h1>
+<img src="https://raw.githubusercontent.com/Sixl-Daniel/FST-Projekt-VSPOT/master/public/media/branding/logo.png" width="300" height="300"><h1>VSPOT<br>Digital Signage Solution</h1>
 <p>
   
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
