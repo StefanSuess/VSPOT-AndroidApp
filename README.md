@@ -8,6 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 </p>
+<p>This app is the VSPOT Android client and connects via the API interface exposed from the web app.</p>
 <p>VSPOT is a graduation project (State-Certified Engineer CS).</p>
 </div>
 
