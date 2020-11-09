@@ -11,6 +11,10 @@
 <p>VSPOT is a graduation project (State-Certified Engineer CS).</p>
 </div>
 
+|Welcome Screen | QR Code Scanner Functionality | Connectivity Issues Notice |Simple Example Screen|
+| ------------- | ----------------------------- | -------------------------- | --------------------|
+| <img src="https://raw.githubusercontent.com/StefanSuess/VSPOT-AndroidApp/master/blob/welcome_screen.png">  |<img src="https://raw.githubusercontent.com/StefanSuess/VSPOT-AndroidApp/master/blob/qr_code_scanner.png"> | <img src="https://raw.githubusercontent.com/StefanSuess/VSPOT-AndroidApp/master/blob/connectivity_issues_notice.png"> | <img src="https://raw.githubusercontent.com/StefanSuess/VSPOT-AndroidApp/master/blob/example_screen.png"> |
+
 ## Author
 
 * **Stefan Süß** – [Profile on GitHub](https://github.com/StefanSuess)
